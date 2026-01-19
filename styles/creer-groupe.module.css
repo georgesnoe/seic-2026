@@ -1,0 +1,36 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: 12px;
+  border-left: 8px solid var(--primary-blue);
+}
+
+.sectionTitle {
+  color: var(--primary-red);
+  border-bottom: 2px solid var(--light-gray);
+  padding-bottom: 10px;
+  margin-top: 2rem;
+}
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 1rem;
+}
+
+.projectCard {
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.projectCard h4 {
+  color: var(--primary-blue);
+  margin-top: 0;
+}
+
+/* On réutilise les styles .formGroup, .label, .input des CSS Modules précédents */

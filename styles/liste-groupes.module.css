@@ -1,0 +1,64 @@
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-top: 4px solid var(--primary-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardValidated {
+  border-top-color: #2ecc71; /* Vert pour validé */
+}
+
+.cardTitle {
+  color: var(--primary-blue);
+  margin: 0 0 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statusBadge {
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.memberCount {
+  font-size: 0.9rem;
+  color: var(--secondary-blue);
+  margin-bottom: 15px;
+}
+
+.viewBtn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background: var(--primary-blue);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.viewBtn:hover {
+  background: var(--primary-red);
+}

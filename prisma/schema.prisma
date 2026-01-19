@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String  @id @default(cuid())
+  email       String  @unique
+  firstName   String
+  lastName    String
+  level       String
+  photoUrl    String
+  description String  @db.Text
+  skills      String  @db.Text
+  canPitch    Boolean @default(false)
+  cvUrl       String?
+  password    String?
+
+  role Role @default(USER)
+
+  groupId String?
+  group   Group?  @relation(fields: [groupId], references: [id])
+
+  isLeader  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Group {
+  id          String  @id @default(cuid())
+  name        String
+  description String
+  vision      String
+  isValidated Boolean @default(false)
+  inviteCode  String  @unique
+
+  members   User[]
+  projects  Project[] // On en créera exactement 3
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  groupId     String
+  group       Group    @relation(fields: [groupId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
