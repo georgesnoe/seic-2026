@@ -2,10 +2,27 @@
 
 import styles from "@/styles/creer-groupe.module.css";
 import { createGroup } from "@/actions/creer-groupe";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
+import { getGroupCreatedByUser, getUserByEmail } from "@/actions/inscription";
 
 export default function CreateGroupPage() {
+  useEffect(() => {
+    const info = localStorage.getItem("user");
+    if (info !== null) {
+      const parsedInfo = JSON.parse(info);
+      getUserByEmail(parsedInfo.email).then((user) => {
+        if (JSON.stringify(user) === JSON.stringify(parsedInfo)) {
+          if (user?.isLeader) {
+            getGroupCreatedByUser(user.id).then((group) => {
+              redirect(`/groupes/${group[0].id}`);
+            });
+          }
+        }
+      });
+    }
+  }, []);
+
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -25,6 +42,7 @@ export default function CreateGroupPage() {
       } else if (result?.success) {
         // Redirection côté client après succès
         // router.push(`/groupes/${result.groupId}?welcome=true`);
+        redirect(`/groupes/${result.groupId}`);
       }
     } catch (err) {
       setErrorMessage("Une erreur imprévue est survenue.");

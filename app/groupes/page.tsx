@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import styles from "@/styles/liste-groupes.module.css";
-import Link from "next/link";
 
 export default async function GroupsListPage() {
   // Récupération des groupes avec le nombre de membres
@@ -47,7 +47,7 @@ export default async function GroupsListPage() {
               </div>
             </div>
 
-            <Link href={`/groups/${group.id}`} className={styles.viewBtn}>
+            <Link href={`/groupes/${group.id}`} className={styles.viewBtn}>
               Voir les détails
             </Link>
           </div>

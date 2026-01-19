@@ -1,3 +1,5 @@
+"use client";
+
 import { prisma } from "@/lib/prisma";
 import styles from "@/styles/dashboard-groupe.module.css";
 import Image from "next/image";
@@ -19,7 +21,7 @@ export default async function GroupPage({
 
   if (!group) notFound();
 
-  const inviteUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/join/${group.inviteCode}`;
+  const inviteUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/rejoindre/${group.inviteCode}`;
 
   return (
     <div className={styles.container}>
@@ -47,9 +49,7 @@ export default async function GroupPage({
       {/* Zone d'invitation (visible par tous les membres ou seulement leader) */}
       <div className={styles.inviteBox}>
         <h3>Recrute ton équipe !</h3>
-        <p>
-          Partage ce lien pour inviter des membres (Max 1 groupe par personne)
-        </p>
+        <p>Partage ce lien pour inviter des membres</p>
         <div className={styles.inviteLink}>
           <input
             type="text"
@@ -61,6 +61,7 @@ export default async function GroupPage({
             type="button"
             className={styles.submitBtn}
             style={{ width: "auto", padding: "10px 20px" }}
+            onClick={() => navigator.clipboard.writeText(inviteUrl)}
           >
             Copier
           </button>

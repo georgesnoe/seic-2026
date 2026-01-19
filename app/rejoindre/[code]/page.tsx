@@ -1,12 +1,33 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import styles from "./Join.module.css";
+import { redirect, useRouter } from "next/navigation";
+import styles from "@/styles/join.module.css";
 import { joinGroup } from "@/actions/rejoindre-groupe";
+import { checkUserHasGroup, getUserByEmail } from "@/actions/inscription";
 
 // Note: Dans Next.js 13+, params est passé aux composants clients également
 export default function JoinPage({ params }: { params: { code: string } }) {
+  // Vérifier si l'utilisateur appartient déjà à un groupe
+  useEffect(() => {
+    const info = localStorage.getItem("user");
+    if (info !== null) {
+      const parsedInfo = JSON.parse(info);
+      getUserByEmail(parsedInfo.email).then((user) => {
+        if (JSON.stringify(user) === JSON.stringify(parsedInfo)) {
+          checkUserHasGroup(user!.id).then((ok) => {
+            if (ok) {
+              alert("Tu as déjà rejoint un groupe.");
+              redirect("/groupes");
+            }
+          });
+        } else {
+          redirect("/inscription");
+        }
+      });
+    }
+  }, []);
+
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");

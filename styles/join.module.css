@@ -1,0 +1,91 @@
+.container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.joinCard {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(29, 53, 87, 0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  border-top: 6px solid var(--primary-blue);
+}
+
+.infoBox {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.infoBox strong {
+  color: var(--primary-blue);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.warningBox {
+  background: #fff5f5;
+  color: #c92a2a;
+  padding: 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ffc9c9;
+}
+
+.errorMessage {
+  background-color: var(--primary-red);
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-blue);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: var(--primary-red);
+}
+
+.submitBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.secondaryBtn {
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  color: var(--secondary-blue);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.cancelLink {
+  display: block;
+  margin-top: 1rem;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+}

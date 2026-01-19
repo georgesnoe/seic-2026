@@ -1,14 +1,33 @@
-import { prisma } from "@/lib/prisma";
+"use client";
+
 import styles from "@/styles/admin.module.css";
 import ValidationButton from "./ValidationButton"; // On crée ce petit composant client en dessous
+import { getUserByEmail, getGroups } from "@/actions/inscription";
+import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default async function AdminPage() {
-  const groups = await prisma.group.findMany({
-    include: {
-      members: { select: { id: true } },
-      projects: { select: { title: true } },
-    },
-    orderBy: { createdAt: "desc" },
+  const [groups, setGroups] = useState<any>();
+
+  // Juste pour les admins
+  useEffect(() => {
+    const info = localStorage.getItem("user");
+    if (info !== null) {
+      const parsedInfo = JSON.parse(info);
+      getUserByEmail(parsedInfo.email).then((user) => {
+        if (JSON.stringify(user) === JSON.stringify(parsedInfo)) {
+          if (user?.role !== "ADMIN") {
+            redirect("/groupes");
+          }
+        } else {
+          redirect("/inscription");
+        }
+      });
+    }
+  }, []);
+
+  getGroups().then((groups) => {
+    setGroups(groups);
   });
 
   return (
@@ -28,7 +47,7 @@ export default async function AdminPage() {
           </tr>
         </thead>
         <tbody>
-          {groups.map((group) => (
+          {groups.map((group: any) => (
             <tr key={group.id}>
               <td>
                 <strong>{group.name}</strong>

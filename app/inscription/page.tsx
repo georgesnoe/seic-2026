@@ -1,19 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import { redirect } from "next/navigation";
+import { useEffect } from "react";
+import { getUserByEmail, registerUser } from "@/actions/inscription";
 import styles from "@/styles/inscription.module.css";
-import { registerUser } from "@/actions/inscription";
 
 export default function RegisterPage() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    level: "beginner",
-    description: "",
-    canPitch: false,
-  });
+  useEffect(() => {
+    const info = localStorage.getItem("user");
+    if (info !== null) {
+      const parsedInfo = JSON.parse(info);
+      getUserByEmail(parsedInfo.email).then((user) => {
+        if (JSON.stringify(user) === JSON.stringify(parsedInfo)) {
+          redirect("/groupes");
+        }
+      });
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +29,9 @@ export default function RegisterPage() {
     } else {
       alert(result.error);
     }
+
+    localStorage.setItem("user", JSON.stringify(result.user));
+    redirect("/groupes");
   };
 
   return (
@@ -82,6 +88,7 @@ export default function RegisterPage() {
             className={styles.input}
             name="mdp"
             id="mdp"
+            minLength={8}
             required
           />
         </div>
