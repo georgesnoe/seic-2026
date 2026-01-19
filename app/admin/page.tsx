@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import styles from "./admin.module.css";
+import styles from "@/styles/admin.module.css";
 import ValidationButton from "./ValidationButton"; // On crée ce petit composant client en dessous
 
 export default async function AdminPage() {

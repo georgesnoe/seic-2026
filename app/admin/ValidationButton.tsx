@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { toggleGroupValidation } from "@/actions/admin";
-import styles from "./admin.module.css";
+import styles from "@/styles/admin.module.css";
 
 export default function ValidationButton({
   groupId,
