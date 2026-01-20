@@ -24,6 +24,8 @@ export default function CreateGroupPage() {
           redirect("/inscription");
         }
       });
+    } else {
+      redirect("/inscription");
     }
   }, []);
 
@@ -63,7 +65,7 @@ export default function CreateGroupPage() {
       <form onSubmit={handleFormSubmit}>
         {/* Infos du Groupe */}
         <div className={styles.formGroup}>
-          <input type="hidden" name="userId" value={} />
+          <input type="hidden" name="userId" value={userId} />
           <label className={styles.label} htmlFor="nom-groupe">
             Nom du groupe
           </label>
