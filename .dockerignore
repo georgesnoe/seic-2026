@@ -1,0 +1,8 @@
+.next/
+.git/
+node_modules/
+.gitignore
+next-env.d.ts
+docker-compose.yaml
+package-lock.json
+.env
