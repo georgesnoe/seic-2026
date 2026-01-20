@@ -17,16 +17,16 @@ export async function createGroup(formData: FormData) {
     const newGroup = await prisma.$transaction(async (tx) => {
       const group = await tx.group.create({
         data: {
-          name: formData.get("groupName") as string,
-          vision: formData.get("groupVision") as string,
-          description: formData.get("groupVision") as string,
+          name: formData.get("nom-groupe") as string,
+          vision: formData.get("vision-groupe") as string,
+          description: formData.get("vision-groupe") as string,
           inviteCode: nanoid(10),
         },
       });
 
       const projectsData = [1, 2, 3].map((num) => ({
-        title: formData.get(`projectTitle_${num}`) as string,
-        description: formData.get(`projectDesc_${num}`) as string,
+        title: formData.get(`titre_projet_${num}`) as string,
+        description: formData.get(`description_projet_${num}`) as string,
         groupId: group.id,
       }));
 
