@@ -8,11 +8,12 @@ import { notFound } from "next/navigation";
 export default async function GroupPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   // 1. Récupération du groupe avec ses membres et projets
   const group = await prisma.group.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: {
       members: true,
       projects: true,
