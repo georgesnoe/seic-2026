@@ -7,17 +7,21 @@ import { redirect } from "next/navigation";
 import { getGroupCreatedByUser, getUserByEmail } from "@/actions/inscription";
 
 export default function CreateGroupPage() {
+  const [userId, setUserId] = useState("");
   useEffect(() => {
     const info = localStorage.getItem("user");
     if (info !== null) {
       const parsedInfo = JSON.parse(info);
       getUserByEmail(parsedInfo.email).then((user) => {
         if (JSON.stringify(user) === JSON.stringify(parsedInfo)) {
+          setUserId(user?.id as string);
           if (user?.isLeader) {
             getGroupCreatedByUser(user.id).then((group) => {
               redirect(`/groupes/${group[0].id}`);
             });
           }
+        } else {
+          redirect("/inscription");
         }
       });
     }
@@ -59,6 +63,7 @@ export default function CreateGroupPage() {
       <form onSubmit={handleFormSubmit}>
         {/* Infos du Groupe */}
         <div className={styles.formGroup}>
+          <input type="hidden" name="userId" value={} />
           <label className={styles.label} htmlFor="nom-groupe">
             Nom du groupe
           </label>

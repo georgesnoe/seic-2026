@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 
 export async function createGroup(formData: FormData) {
   // Simuler une récupération d'ID utilisateur (ex: via NextAuth)
-  const userId = "id_actuel_user";
+  const userId = formData.get("userId") as string;
 
   try {
     // 1. Check si l'user a déjà un groupe (Sécurité supplémentaire)
