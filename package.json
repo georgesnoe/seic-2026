@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "db:generate": "prisma generate"
+    "db:generate": "prisma generate",
+    "setup-build": "prisma generate && next build"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
