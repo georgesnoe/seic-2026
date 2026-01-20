@@ -39,9 +39,11 @@ export default function CreateGroupPage() {
       if (result?.error) {
         setErrorMessage(result.error);
         setIsLoading(false);
+        alert("Le groupe n'a pas pu être créé. Veuillez réessayer");
       } else if (result?.success) {
         // Redirection côté client après succès
         // router.push(`/groupes/${result.groupId}?welcome=true`);
+        alert("Le groupe a été créé avec succès");
         redirect(`/groupes/${result.groupId}`);
       }
     } catch (err) {
