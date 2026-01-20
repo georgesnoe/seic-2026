@@ -58,14 +58,14 @@ export default async function GroupPage({
             value={inviteUrl}
             className={styles.copyInput}
           />
-          <button
-            type="button"
-            className={styles.submitBtn}
-            style={{ width: "auto", padding: "10px 20px" }}
-            onClick={() => navigator.clipboard.writeText(inviteUrl)}
-          >
-            Copier
-          </button>
+          {/* <button */}
+          {/*   type="button" */}
+          {/*   className={styles.submitBtn} */}
+          {/*   style={{ width: "auto", padding: "10px 20px" }} */}
+          {/*   onClick={() => navigator.clipboard.writeText(inviteUrl)} */}
+          {/* > */}
+          {/*   Copier */}
+          {/* </button> */}
         </div>
       </div>
 
