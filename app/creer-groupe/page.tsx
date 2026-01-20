@@ -13,7 +13,7 @@ export default function CreateGroupPage() {
     if (info !== null) {
       const parsedInfo = JSON.parse(info);
       getUserByEmail(parsedInfo.email).then((user) => {
-        if (JSON.stringify(user) === JSON.stringify(parsedInfo)) {
+        if (user?.password === parsedInfo.password) {
           setUserId(user?.id as string);
           if (user?.isLeader) {
             getGroupCreatedByUser(user.id).then((group) => {
