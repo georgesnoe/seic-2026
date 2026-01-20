@@ -16,7 +16,16 @@ export default async function GroupsListPage() {
   return (
     <div className={styles.container}>
       <h1 style={{ color: "var(--primary-blue)" }}>Groupes de l'événement</h1>
-      <p>Découvrez les équipes et leurs visions pour cette édition.</p>
+      <p
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <span>Découvrez les équipes et leurs visions pour cette édition.</span>
+        <a href="/inscription">S'inscrire</a>
+      </p>
 
       <div className={styles.grid}>
         {groups.map((group) => (
