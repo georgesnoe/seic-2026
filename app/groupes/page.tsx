@@ -24,7 +24,16 @@ export default async function GroupsListPage() {
         }}
       >
         <span>Découvrez les équipes et leurs visions pour cette édition.</span>
-        <a href="/inscription">S'inscrire</a>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "16px",
+          }}
+        >
+          <a href="/creer-groupe">Créer un groupe</a>
+          <a href="/inscription">S'inscrire</a>
+        </div>
       </p>
 
       <div className={styles.grid}>
